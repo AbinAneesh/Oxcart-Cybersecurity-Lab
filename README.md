@@ -38,7 +38,7 @@ The main objectives of OxCart are to:
               |                           |
               v                           v
      +------------------+       +------------------+
-     |   App Server     |       |  Wazuh Server   |
+     |   App Server     |       |  Wazuh Server    |
      |  Private Subnet  |       |  Private Subnet  |
      |                  |       |                  |
      | Nginx            |       | Wazuh Manager    |
