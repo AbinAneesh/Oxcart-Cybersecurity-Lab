@@ -155,7 +155,7 @@ sudo tail -f /var/log/suricata/eve.json | jq -c \
   'select(.event_type == "alert") | {timestamp, src_ip, dest_ip, proto, alert: .alert.signature, sid: .alert.signature_id}'
 ```
 
-![Suricata alerts streaming from eve.json on the Bastion](screenshots/suricata-eve-alerts.png)
+![Suricata alerts streaming from eve.json on the Bastion](Screenshots/suricata-eve-alerts.png)
 
 The screenshot shows two things:
 
@@ -183,7 +183,7 @@ Suricata matched the existing Emerging Threats signature, so no custom rule was 
 
 Wazuh generated *Suricata: Alert - ET WEB_SERVER Script tag in URI Possible Cross Site Scripting Attempt*. The screenshot below is from the Wazuh manager's `alerts.json`:
 
-![Wazuh alert for the Emerging Threats XSS signature](screenshots/suricata-xss-detection.png)
+![Wazuh alert for the Emerging Threats XSS signature](Screenshots/suricata-xss-detection.png)
 
 ### 5.3 Command Injection and Sensitive File Access (Emerging Threats)
 
@@ -203,7 +203,7 @@ Decoded: `/product?id=1;cat /etc/passwd`
 
 Again no custom rule was needed. Wazuh generated *Suricata: Alert - ET WEB_SERVER /etc/passwd Detected in URI*:
 
-![Wazuh alert for the Emerging Threats /etc/passwd signature](screenshots/suricata-passwd-detection.png)
+![Wazuh alert for the Emerging Threats /etc/passwd signature](Screenshots/suricata-passwd-detection.png)
 
 ### 5.4 Detection Happens Regardless of Application Outcome
 
