@@ -56,7 +56,7 @@ All three instances are running and passing their status checks in `ap-southeast
 | OxCart Bastion | Entry point, reverse proxy, NAT, Suricata sensor | `t3.small` |
 | OxCart Central (Wazuh) | SIEM (private subnet) | `c7i-flex.large` |
 
-![EC2 console showing the three OxCart instances running with 3/3 status checks passed](screenshots/ec2-01-infrastructure-overview.png)
+![EC2 console showing the three OxCart instances running with 3/3 status checks passed](Defense/Instance Defense/Screenshots/ec2-01-infrastructure-overview.png)
 
 ### 3.2 SSH Configuration
 
@@ -74,11 +74,11 @@ sudo sshd -T | grep -E 'permitrootlogin|pubkeyauthentication|passwordauthenticat
 
 **Bastion**
 
-![Effective sshd configuration on the Bastion](screenshots/ec2-02-ssh-hardening-bastion.png)
+![Effective sshd configuration on the Bastion](Defense/Instance Defense/Screenshots/ec2-02-ssh-hardening-bastion.png)
 
 **App Server**
 
-![Effective sshd configuration on the App Server](screenshots/ec2-02-ssh-hardening-app.png)
+![Effective sshd configuration on the App Server](Defense/Instance Defense/Screenshots/ec2-02-ssh-hardening-app.png)
 
 Password authentication is off on both hosts, which removes password guessing as an attack path. On the Bastion, `prohibit-password` still permits root login with an SSH key, so root login there is restricted rather than disabled (see [F1](#5-findings-and-recommendations)).
 
@@ -97,13 +97,13 @@ Hardening measures:
 
 Suricata deployment, rules, and tests are documented in the [Suricata IDS report](suricata-ids.md). The Wazuh alert below shows Suricata events arriving from the Bastion's agent (`ip-10-0-2-242`):
 
-![Wazuh alert originating from the Bastion agent](screenshots/suricata-passwd-detection.png)
+![Wazuh alert originating from the Bastion agent](Defense/Instance Defense/Screenshots/suricata-passwd-detection.png)
 
 ### 3.4 Bastion Security Group
 
 `OxCart-bastion-sg` limits the Bastion's public exposure to two services. SSH is restricted to a single administrator address (`/32`, redacted in the screenshot), and HTTP is open to the Internet because the Bastion is the public web entry point.
 
-![Inbound rules of the Bastion security group](screenshots/ec2-06-bastion-security-group.png)
+![Inbound rules of the Bastion security group](Defense/Instance Defense/Screenshots/ec2-06-bastion-security-group.png)
 
 | # | Type | Port | Source | Note |
 |---|---|---|---|---|
@@ -175,7 +175,7 @@ flowchart LR
 
 **Block Public Access.** The console reports *Block all public access: On* for the bucket:
 
-![S3 console showing Block all public access turned on](screenshots/s3-02-public-access-controls.png)
+![S3 console showing Block all public access turned on](Defense/Instance Defense/Screenshots/s3-02-public-access-controls.png)
 
 **HTTPS enforcement.** The bucket policy contains an explicit deny for any request where `aws:SecureTransport` is `false`:
 
@@ -195,7 +195,7 @@ flowchart LR
 }
 ```
 
-![Bucket policy containing the DenyInsecureTransport statement](screenshots/s3-03-https-policy.png)
+![Bucket policy containing the DenyInsecureTransport statement](Defense/Instance Defense/Screenshots/s3-03-https-policy.png)
 
 Together these controls reduce the risk of accidental public exposure, unencrypted transport, and irreversible overwrites.
 
@@ -312,4 +312,4 @@ SSH hardening, the Bastion's network exposure, public-access blocking, and HTTPS
 
 ---
 
-*Tested in a self-owned lab environment for educational and portfolio purposes. Account identifiers and administrator IP addresses have been redacted from the screenshots.*
+*Tested in a self-owned lab environment for educational and portfolio purposes. Account identifiers and administrator IP addresses have been redacted from the Defense/Instance Defense/Screenshots.*
