@@ -110,7 +110,7 @@ The log group contains four log streams. Each is named after a network interface
 | `eni-0f1f12c332350290b-all` | 2026-10-27 01:29:01 |
 | `eni-0a98dadb701709abe-all` | 2026-10-27 01:27:09 |
 
-![CloudWatch log streams, one per network interface](screenshots/vpc-05-log-streams-per-eni.png)
+![CloudWatch log streams, one per network interface](Screenshots/vpc-05-log-streams-per-eni.png)
 
 Two of these interfaces are identified in this report (the App Server and the Instance Connect Endpoint). The other two are not examined here.
 
@@ -123,7 +123,7 @@ The `eni-0f1f12c332350290b-all` stream contains records for the Wazuh agent conn
 2 <ACCOUNT_ID> eni-0f1f12c332350290b 10.0.1.88 10.0.1.110 35559 1514 6 1 60 1793061426 1793061443 ACCEPT OK
 ```
 
-![Accepted traffic between the Wazuh Server and the App Server on port 1514](screenshots/vpc-02-cloudwatch-app-server-traffic.png)
+![Accepted traffic between the Wazuh Server and the App Server on port 1514](Screenshots/vpc-02-cloudwatch-app-server-traffic.png)
 
 What the records show:
 
